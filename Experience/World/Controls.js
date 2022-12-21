@@ -170,13 +170,13 @@ export default class Controls {
           z: 3,
         });
       },
-      // Mobile
+      //STARTS Mobile responsive
       "(max-width: 968px)": () => {
         // console.log("fired mobile");
 
         // Resets
-        this.room.scale.set(0.01, 0.01, 0.01);
-        this.room.position.set(0, 0, 0);
+        this.room.scale.set(0.08, 0.08, 0.08);
+        this.room.position.set(0, 1.2, 0);
 
         this.camera.orthographicCamera.position.set(0, 6.5, 10);
 
@@ -189,11 +189,25 @@ export default class Controls {
             scrub: 0.6,
             // invalidateOnRefresh: true,
           },
-        }).to(this.room.scale, {
-          x: 0.025,
-          y: 0.025,
-          z: 0.025,
-        });
+        })
+          .to(
+            this.room.scale,
+            {
+              x: 0.12,
+              y: 0.12,
+              z: 0.12,
+            },
+            "same"
+          )
+          .to(
+            this.camera.orthographicCamera.position,
+            {
+              x: 0,
+              y: 2,
+              z: 0,
+            },
+            "same"
+          );
 
         // Second section -----------------------------------------
 
@@ -209,35 +223,28 @@ export default class Controls {
           .to(
             this.room.scale,
             {
-              x: 0.02,
-              y: 0.02,
-              z: 0.02,
+              x: 0.25,
+              y: 0.25,
+              z: 0.25,
             },
             "same"
           )
           .to(
-            this.rectLight,
+            this.camera.orthographicCamera.position,
             {
-              width: 0.3 * 3.4,
-              height: 0.4 * 3.4,
-            },
-            "same"
-          )
-          .to(
-            this.room.position,
-            {
-              x: -1.5,
-              y: 1,
-              z: 2,
+              x: 2.3,
+              y: 4,
+              z: 0,
             },
             "same"
           );
+
         this.room.children.forEach((child) => {
-          if (child.name === "SillGamer") {
+          if (child.name === "SillGamer001") {
             GSAP.to(child.position, {
-              x: -50,
-              y: 23.38,
-              z: 1.34,
+              x: 0,
+              y: -8,
+              z: 0,
               duration: 3,
             });
           }
@@ -252,11 +259,25 @@ export default class Controls {
             scrub: 0.6,
             invalidateOnRefresh: true,
           },
-        }).to(this.room.position, {
-          x: 2,
-          y: 0,
-          z: -2,
-        });
+        })
+          .to(
+            this.room.scale,
+            {
+              x: 0.08,
+              y: 0.08,
+              z: 0.08,
+            },
+            "same"
+          )
+          .to(
+            this.camera.orthographicCamera.position,
+            {
+              x: 0,
+              y: 0,
+              z: 0,
+            },
+            "same"
+          );
       },
 
       all: () => {
@@ -268,7 +289,7 @@ export default class Controls {
         });
 
         this.room.children.forEach((child) => {
-          if (child.name === "Plataforma") {
+          if (child.name === "Plataforma001") {
             this.first = GSAP.to(child.position, {
               x: 0,
               duration: 2,

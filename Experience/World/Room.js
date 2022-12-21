@@ -46,20 +46,25 @@ export default class Room {
           groupchild.receiveShadow = true;
         });
       }
-
+      //consola que muestra todos los nombres de los objetos
+      console.log(child);
       //AÑADE EL VIDEO COMO MATERIAL EN LA PANTALLA
       //BUSCA DENTRO DE LOS RECURSOS EL NOMBRE DE "screen"
       //CON EL QUE FUE DADO DE ALTA EL VIDEO, COMO UN TAG
-      if (child.name === "Pantalla") {
+      if (
+        child.name === "Pantalla001" ||
+        child.name === "PantallaIzquierda001" ||
+        child.name === "PantallaDerecha001"
+      ) {
         child.material = new THREE.MeshBasicMaterial({
           map: this.resources.items.screen,
         });
       }
 
-      if (child.name === "SillGamer") {
-        (child.position.x = 0),
-          (child.position.y = 23.38),
-          (child.position.z = 1.34);
+      if (child.name === "SillGamer001") {
+        (child.position.x = 10),
+          (child.position.y = 0),
+          (child.position.z = 10);
       }
 
       /*  if (
@@ -73,7 +78,7 @@ export default class Room {
         child.scale.set = (0, 0, 0);
       } */
 
-      this.actualRoom.scale.set(0.01, 0.01, 0.01);
+      //this.actualRoom.scale.set(1, 1, 1);
       //this.actualRoom.position.set(0, 0, 2);
       if (child.name === "Cube") {
       }
@@ -82,10 +87,10 @@ export default class Room {
     });
 
     /* LUZ ROJA */
-    const light = new THREE.PointLight(0xff0000, 0.5, 0.5);
-    light.position.set(1, 1, -0.55);
-    light.intensity = 1;
-    light.rotation.y = Math.PI / 4;
+    const redLight = new THREE.PointLight(0xff0000, 0.5, 0.5);
+    redLight.position.set(1, 1, -0.55);
+    redLight.intensity = 1;
+    redLight.rotation.y = Math.PI / 4;
 
     /* LUZ AZUL */
     const light2 = new THREE.PointLight(0x0040ff, 0.5, 0.5);
@@ -99,65 +104,28 @@ export default class Room {
     light3.intensity = 1;
     light3.rotation.y = Math.PI / 4;
 
-    const PointLightHelper = new THREE.PointLightHelper(light);
-    //light.add(PointLightHelper);
+    //const PointLightHelper = new THREE.PointLightHelper(lightPhotoWhite);
+    //lightPhotoWhite.add(PointLightHelper);
 
-    const PointLightHelper2 = new THREE.PointLightHelper(light);
+    //const PointLightHelper2 = new THREE.PointLightHelper(redLight);
     //light2.add(PointLightHelper2);
 
-    const PointLightHelper3 = new THREE.PointLightHelper(light);
+    //const PointLightHelper3 = new THREE.PointLightHelper(redLight);
     //light3.add(PointLightHelper3);
 
-    /* LUZ DE MAC Y TECLADO */
-    const width = 1;
-    const height = 1;
-    const intensity = 10;
-    const rectLight = new THREE.RectAreaLight(
-      0xffffff,
-      intensity,
-      width,
-      height
-    );
-    rectLight.position.set(-1, 1, -0.45);
-    rectLight.rotation.y = -Math.PI / 2;
-
-    const RectLightHelper = new RectAreaLightHelper(rectLight);
-    //rectLight.add(RectLightHelper);
-
-    /* VARIABLES SPOTLIGHT */
-    const distanceSpotlight = 2.5;
-    const angleSpotlight = 0.5;
-    const intensity2 = 5;
-    const penumbraSpotlight = 0;
-    const decaySpotlight = 1.7;
-    const spotLight = new THREE.SpotLight(
-      0xffffff,
-      intensity2,
-      distanceSpotlight,
-      angleSpotlight,
-      penumbraSpotlight,
-      decaySpotlight
-    );
-    spotLight.position.set(0.95, 1.48, 0);
-    spotLight.rotation.y = 100;
-
-    this.scene.add(spotLight);
-
-    const helperSpot = new THREE.SpotLightHelper(spotLight);
-    //this.scene.add(helperSpot);
-
-    /*  const stats = Stats();
+    /*
+    const stats = Stats();
     document.body.appendChild(stats.dom);
 
     const data = {
-      color: light.color.getHex(),
+      color: spotLight.color.getHex(),
       mapsEnabled: true,
     };
 
-    const gui = new GUI();
+     const gui = new GUI();
     const lightFolder = gui.addFolder("THREE.Light");
     lightFolder.addColor(data, "color").onChange(() => {
-      light.color.setHex(Number(data.color.toString().replace("#", "0x")));
+      lightPhoto.color.setHex(Number(data.color.toString().replace("#", "0x")));
     });
     lightFolder.add(spotLight, "intensity", 0, 1, 0.01);
     lightFolder.open();
@@ -184,10 +152,7 @@ export default class Room {
     }); */
     /* TERMINA SPOTLIGHT */
 
-    this.roomChildren["rectLight"] = rectLight;
-
-    this.scene.add(rectLight);
-    this.scene.add(light);
+    this.scene.add(redLight);
     this.scene.add(light2);
     this.scene.add(light3);
 
@@ -198,14 +163,10 @@ export default class Room {
   }
 
   onMouseMove() {
-    window.addEventListener("mousemove", (e) => {
-      //console.log(e);
-      /* CONVIERTE EL ANCHO DE LA PANTALLA, SEA CUAL SEA EL TAMAÑO
-      DE -1 0 1 */
+    window.addEventListener("onmousemove", (e) => {
       this.rotation =
         ((e.clientX - window.innerWidth / 2) * 2) / window.innerWidth;
-      this.lerp.target = this.rotation;
-      //console.log(this.rotation);
+      this.lerp.target = this.rotation * 5;
     });
   }
 
