@@ -34,7 +34,14 @@ export default class Controls {
 
     document.querySelector(".page").style.overflow = "visible";
 
-    this.setSmoothScroll();
+    //SCROLL ON MOBILE
+    if (
+      !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    ) {
+      this.setSmoothScroll();
+    }
     this.setScrollTrigger();
   }
 
@@ -93,6 +100,9 @@ export default class Controls {
       // large
       "(min-width: 969px)": () => {
         console.log("fired desktop");
+        this.room.scale.set(0.08, 0.08, 0.08);
+        this.camera.orthographicCamera.position.set(0, 6.5, 10);
+        this.room.position.set(0, 1, 0);
         //DESKTOP
         // setup animations and ScrollTriggers for screens 960px wide or greater...
         // These ScrollTriggers will be reverted/killed when the media query doesn't match anymore.
@@ -107,11 +117,21 @@ export default class Controls {
           },
         });
 
-        this.firstMoveTimeline.to(this.room.position, {
-          x: () => {
-            return this.sizes.width * 0.0014;
-          },
-        });
+        this.firstMoveTimeline
+          .to(this.room.position, {
+            x: () => {
+              return this.sizes.width * 0.0014;
+            },
+          })
+          .to(
+            this.room.scale,
+            {
+              x: 0.085,
+              y: 0.085,
+              z: 0.085,
+            },
+            "same"
+          );
 
         this.secondMoveTimeline = new GSAP.timeline(
           {
@@ -132,9 +152,9 @@ export default class Controls {
           .to(
             this.room.scale,
             {
-              x: 0.022,
-              y: 0.022,
-              z: 0.022,
+              x: 0.085,
+              y: 0.085,
+              z: 0.085,
             },
             "same"
           )
@@ -142,8 +162,8 @@ export default class Controls {
             this.camera.orthographicCamera.position,
             {
               y: 0,
-              x: 2,
-              z: -5,
+              x: 5,
+              z: 0,
             },
             "same"
           );
@@ -165,9 +185,9 @@ export default class Controls {
             invalidateOnRefresh: true,
           },
         }).to(this.camera.orthographicCamera.position, {
-          y: 1.5,
-          x: -1.5,
-          z: 3,
+          y: 1,
+          x: 0,
+          z: 1,
         });
       },
       //STARTS Mobile responsive

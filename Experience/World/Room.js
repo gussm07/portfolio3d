@@ -81,6 +81,8 @@ export default class Room {
       //this.actualRoom.scale.set(1, 1, 1);
       //this.actualRoom.position.set(0, 0, 2);
       if (child.name === "Cube") {
+        child.position.set(0, -1, 0);
+        child.rotation.y = Math.PI / 4;
       }
 
       this.roomChildren[child.name.toLowerCase()] = child;
