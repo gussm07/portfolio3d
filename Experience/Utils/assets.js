@@ -4,7 +4,7 @@ export default [
   {
     name: "room",
     type: "glbModel",
-    path: "/models/portfolio3DGood.glb",
+    path: "/models/Finale Version.glb",
   },
   {
     name: "screen",

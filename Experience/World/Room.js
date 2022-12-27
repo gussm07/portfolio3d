@@ -16,7 +16,7 @@ export default class Room {
     //AQUI OBTENEMOS LOS OBJETOS DEL MODELO3D
     this.actualRoom = this.room.scene;
     //MUESTRA LOS OBJETOS DEL MODELO3D EN CONSOLA
-    //console.log(this.actualRoom);
+    console.log(this.actualRoom);
     //FUNCION PARA AÑADIR LA ESCENA 3D PERO SIN LUZ
     //
 
@@ -51,12 +51,8 @@ export default class Room {
       //AÑADE EL VIDEO COMO MATERIAL EN LA PANTALLA
       //BUSCA DENTRO DE LOS RECURSOS EL NOMBRE DE "screen"
       //CON EL QUE FUE DADO DE ALTA EL VIDEO, COMO UN TAG
-      if (
-        child.name === "Pantalla001" ||
-        child.name === "PantallaIzquierda001" ||
-        child.name === "PantallaDerecha001"
-      ) {
-        child.material = new THREE.MeshBasicMaterial({
+      if (child.name === "Computer") {
+        child.children[3].material = new THREE.MeshBasicMaterial({
           map: this.resources.items.screen,
         });
       }
