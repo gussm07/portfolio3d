@@ -12,6 +12,8 @@ export default class Sizes extends EventEmitter {
     //YA QUE AL FINAL EN this.emit("resize") SE DA UNA ALERTA DE QUE
     //SE NECESITA REDIMENSIONAR LA PANTALLA
 
+    /* OCUPAMOS ESTA CONDICION PARA APLICAR ANIMACION CORRESPONDIENTE
+    SI ES EN MOBILE O DESKTOP EN PRELOADER.JS */
     if (this.width < 968) {
       this.device = "mobile";
     } else {

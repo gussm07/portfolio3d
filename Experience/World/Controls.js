@@ -300,31 +300,8 @@ export default class Controls {
           );
       },
 
+      // all
       all: () => {
-        this.secondPartTimeline = new GSAP.timeline({
-          scrollTrigger: {
-            trigger: ".third-move",
-            start: "center center",
-          },
-        });
-
-        this.room.children.forEach((child) => {
-          if (child.name === "Plataforma001") {
-            this.first = GSAP.to(child.position, {
-              x: 0,
-              duration: 2,
-            });
-          }
-        });
-
-        this.secondPartTimeline.add(this.first);
-        this.secondPartTimeline.add(this.second);
-        this.secondPartTimeline.add(this.third);
-        this.secondPartTimeline.add(this.fourth);
-        this.secondPartTimeline.add(this.fifth);
-        this.secondPartTimeline.add(this.sixth);
-        this.secondPartTimeline.add(this.seventh);
-
         this.sections = document.querySelectorAll(".section");
         this.sections.forEach((section) => {
           this.progressWrapper = section.querySelector(".progress-wrapper");
@@ -382,15 +359,14 @@ export default class Controls {
           });
         });
 
-        //CIRCLE ANIMATIONS
-        this.firstMoveTimeline = new GSAP.timeline({
+        // All animations
+        // First section -----------------------------------------
+        this.firstCircle = new GSAP.timeline({
           scrollTrigger: {
-            /* first-move definido en linea 49 */
             trigger: ".first-move",
             start: "top top",
             end: "bottom bottom",
-            scrub: 1,
-            invalidateOnRefresh: true,
+            scrub: 0.6,
           },
         }).to(this.circleFirst.scale, {
           x: 3,
@@ -398,14 +374,13 @@ export default class Controls {
           z: 3,
         });
 
-        this.secondMoveTimeline = new GSAP.timeline({
+        // Second section -----------------------------------------
+        this.secondCircle = new GSAP.timeline({
           scrollTrigger: {
-            /* first-move definido en linea 49 */
             trigger: ".second-move",
             start: "top top",
             end: "bottom bottom",
-            scrub: 1,
-            invalidateOnRefresh: true,
+            scrub: 0.6,
           },
         })
           .to(
@@ -425,20 +400,72 @@ export default class Controls {
             "same"
           );
 
-        this.thirdMoveTimeline = new GSAP.timeline({
+        // Third section -----------------------------------------
+        this.thirdCircle = new GSAP.timeline({
           scrollTrigger: {
-            /* first-move definido en linea 49 */
             trigger: ".third-move",
             start: "top top",
             end: "bottom bottom",
-            scrub: 1,
-            invalidateOnRefresh: true,
+            scrub: 0.6,
           },
         }).to(this.circleThird.scale, {
           x: 3,
           y: 3,
           z: 3,
         });
+
+        // Mini Platform Animations
+        this.secondPartTimeline = new GSAP.timeline({
+          scrollTrigger: {
+            trigger: ".third-move",
+            start: "center center",
+          },
+        });
+
+        this.room.children.forEach((child) => {
+          if (child.name === "MiniFloor") {
+            this.first = GSAP.to(child.position, {
+              x: -5.44055,
+              z: 13.6135,
+              duration: 0.3,
+            });
+          }
+          if (child.name === "Mailbox") {
+            this.second = GSAP.to(child.position, {
+              x: 2,
+              y: -3,
+              z: 18,
+              duration: 0.3,
+            });
+          }
+          if (child.name === "FlowerPot") {
+            this.seventh = GSAP.to(child.position, {
+              x: -2,
+              y: -3,
+              z: 18,
+              ease: "back.out(2)",
+              duration: 0.3,
+            });
+          }
+          if (child.name === "Flowers") {
+            this.eighth = GSAP.to(child.position, {
+              x: -2,
+              y: -3,
+              z: 15,
+              ease: "back.out(2)",
+              duration: 0.3,
+            });
+          }
+        });
+        this.secondPartTimeline.add(this.first);
+        this.secondPartTimeline.add(this.second);
+        this.secondPartTimeline.add(this.third);
+        this.secondPartTimeline.add(this.fourth, "-=0.2");
+        this.secondPartTimeline.add(this.fifth, "-=0.2");
+        this.secondPartTimeline.add(this.sixth, "-=0.2");
+        this.secondPartTimeline.add(this.seventh, "-=0.2");
+        this.secondPartTimeline.add(this.eighth);
+        this.secondPartTimeline.add(this.ninth, "-=0.1");
       },
     });
   }

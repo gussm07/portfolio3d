@@ -16,7 +16,7 @@ export default class Room {
     //AQUI OBTENEMOS LOS OBJETOS DEL MODELO3D
     this.actualRoom = this.room.scene;
     //MUESTRA LOS OBJETOS DEL MODELO3D EN CONSOLA
-    console.log(this.actualRoom);
+    //console.log(this.actualRoom);
     //FUNCION PARA AÑADIR LA ESCENA 3D PERO SIN LUZ
     //
 
@@ -47,7 +47,7 @@ export default class Room {
         });
       }
       //consola que muestra todos los nombres de los objetos
-      console.log(child);
+      //console.log(child);
       //AÑADE EL VIDEO COMO MATERIAL EN LA PANTALLA
       //BUSCA DENTRO DE LOS RECURSOS EL NOMBRE DE "screen"
       //CON EL QUE FUE DADO DE ALTA EL VIDEO, COMO UN TAG
@@ -57,28 +57,40 @@ export default class Room {
         });
       }
 
-      if (child.name === "SillGamer001") {
+      /*   if (child.name === "SillGamer001") {
         (child.position.x = 10),
           (child.position.y = 0),
           (child.position.z = 10);
       }
-
-      /*  if (
-        child.name === "Correo" ||
-        child.name === "LadrillosPiso" ||
-        child.name === "Planta" ||
-        child.name === "Flowers" ||
-        child.name === "Planta1" ||
-        child.name === "Planta2"
-      ) {
-        child.scale.set = (0, 0, 0);
+      if (child.name === "MiniFloor") {
+        child.position.x = -0.289521;
+        child.position.z = -18.83572;
+      }
+      if (child.name === "Flowers") {
+        child.position.x = -0.289521;
+        child.position.z = -50.83572;
+      }
+      if (child.name === "FlowerPot") {
+        child.position.x = -0.289521;
+        child.position.z = -50.83572;
+      }
+      if (child.name === "Mailbox") {
+        child.position.x = -0.289521;
+        child.position.z = -50.83572;
       } */
 
       //this.actualRoom.scale.set(1, 1, 1);
-      //this.actualRoom.position.set(0, 0, 2);
+      child.position.set(0, 20, 0);
+      child.scale.set(0, 0, 0);
       if (child.name === "Cube") {
+        //child.scale.set(1, 1, 1);
         child.position.set(0, -1, 0);
-        child.rotation.y = Math.PI / 4;
+        child.rotation.y = Math.PI / 2.5;
+      }
+
+      if (child.name === "Chair") {
+        //child.scale.set(1, 1, 1);
+        child.position.set(11.3, 5.5, 10);
       }
 
       this.roomChildren[child.name.toLowerCase()] = child;
@@ -161,10 +173,10 @@ export default class Room {
   }
 
   onMouseMove() {
-    window.addEventListener("onmousemove", (e) => {
+    window.addEventListener("mousemove", (e) => {
       this.rotation =
         ((e.clientX - window.innerWidth / 2) * 2) / window.innerWidth;
-      this.lerp.target = this.rotation * 5;
+      this.lerp.target = this.rotation * 0.05;
     });
   }
 

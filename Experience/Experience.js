@@ -11,6 +11,8 @@ import Preloader from "./Preloader.js";
 import Resources from "./Utils/Resources.js";
 
 import World from "./World/World.js";
+import Controls from "./World/Controls.js";
+
 import assets from "./Utils/assets.js";
 
 export default class Experience {
@@ -32,6 +34,10 @@ export default class Experience {
     this.time = new Time();
     this.world = new World();
     this.preloader = new Preloader();
+
+    /* this.preloader.on("enablecontrols", () => {
+      this.controls = new Controls();
+    }); */
 
     //Every action on a computer is an event.
     //Like when a connection is made or a file is opened.
