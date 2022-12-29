@@ -222,9 +222,9 @@ export default class Controls {
           .to(
             this.camera.orthographicCamera.position,
             {
-              x: 0,
+              x: 1,
               y: 2,
-              z: 0,
+              z: 1,
             },
             "same"
           );
@@ -252,7 +252,7 @@ export default class Controls {
           .to(
             this.camera.orthographicCamera.position,
             {
-              x: 2.3,
+              x: 4,
               y: 4,
               z: 0,
             },
@@ -283,9 +283,9 @@ export default class Controls {
           .to(
             this.room.scale,
             {
-              x: 0.08,
-              y: 0.08,
-              z: 0.08,
+              x: 0.25,
+              y: 0.25,
+              z: 0.25,
             },
             "same"
           )
@@ -293,8 +293,8 @@ export default class Controls {
             this.camera.orthographicCamera.position,
             {
               x: 0,
-              y: 0,
-              z: 0,
+              y: 1,
+              z: -1,
             },
             "same"
           );

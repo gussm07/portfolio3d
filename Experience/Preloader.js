@@ -83,6 +83,7 @@ export default class Preloader extends EventEmitter {
           stagger: 0.05,
           ease: "back.out(1.7)",
         })
+
         .to(
           ".arrow-svg-wrapper",
           {
@@ -119,6 +120,13 @@ export default class Preloader extends EventEmitter {
             opacity: 0,
           },
           "fadeout"
+        )
+        .to(
+          ".hero-main-description",
+          {
+            opacity: 1,
+          },
+          "same"
         );
 
       this.secondTimeline

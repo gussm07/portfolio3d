@@ -236,6 +236,7 @@ svg {
 }
 
 .section {
+  position: relative;
   width: 50%;
   padding: 1000px 4%;
   margin: 0;
@@ -381,7 +382,7 @@ svg {
 .hero-wrapper {
   position: relative;
   height: 100%;
-  width: calc(100% - 160px);
+  width: 100%;
   /* AUTO PONE ESPACIO AUTOMATICO EN DERECHA E IZQUIERDA */
   margin: 0 auto;
   max-width: 1110px;
@@ -402,7 +403,7 @@ svg {
 }
 
 .hero-main-title {
-  font-size: 64px;
+  font-size: 60px;
   color: var(--color-text);
 }
 
@@ -470,6 +471,7 @@ PROPIEDAD width OCUPADA EN .section */
   }
   .hero-main-description {
     font-size: 18px;
+    opacity: 0;
   }
   .hero-second-subheading {
     font-size: 18px;
