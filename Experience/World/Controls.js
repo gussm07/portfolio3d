@@ -99,7 +99,7 @@ export default class Controls {
     ScrollTrigger.matchMedia({
       // large
       "(min-width: 969px)": () => {
-        console.log("fired desktop");
+        //console.log("fired desktop");
         this.room.scale.set(0.08, 0.08, 0.08);
         this.camera.orthographicCamera.position.set(0, 6.5, 10);
         this.room.position.set(0, 1, 0);
@@ -126,9 +126,9 @@ export default class Controls {
           .to(
             this.room.scale,
             {
-              x: 0.085,
-              y: 0.085,
-              z: 0.085,
+              x: 0.11,
+              y: 0.11,
+              z: 0.11,
             },
             "same"
           );
@@ -152,18 +152,23 @@ export default class Controls {
           .to(
             this.room.scale,
             {
-              x: 0.085,
-              y: 0.085,
-              z: 0.085,
+              x: 0.15,
+              y: 0.15,
+              z: 0.15,
             },
             "same"
           )
+          .to(this.room.position, {
+            x: () => {
+              return this.sizes.width * 0.0014;
+            },
+          })
           .to(
             this.camera.orthographicCamera.position,
             {
               y: 0,
-              x: 5,
-              z: 0,
+              x: 2,
+              z: -4,
             },
             "same"
           );
@@ -184,11 +189,15 @@ export default class Controls {
             scrub: 1,
             invalidateOnRefresh: true,
           },
-        }).to(this.camera.orthographicCamera.position, {
-          y: 1,
-          x: 0,
-          z: 1,
-        });
+        })
+          .to(this.camera.orthographicCamera.position, {
+            y: 2,
+            x: 4,
+            z: 1,
+          })
+          .to(this.room.position, {
+            x: 5,
+          });
       },
       //STARTS Mobile responsive
       "(max-width: 968px)": () => {
