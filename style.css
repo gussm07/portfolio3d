@@ -1,5 +1,42 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+/* STARTS HOVER BUTTON EFFECTS IN MY WORK SECTION */
+
+.source_code_button {
+  background-color: var(--color-pink);
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  margin-top: 35px;
+  margin-left: 15px;
+  height: 40px;
+  width: 40%;
+  padding: 5px 5px;
+  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial;
+}
+
+.live_version_button {
+  background-color: var(--color-pink);
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  margin-left: 15px;
+  height: 40px;
+  width: 40%;
+  padding: 5px 5px;
+  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial;
+}
+.source_code_button:hover {
+  scale: 1.1;
+  transition: ease-in-out 0.5s;
+}
+.live_version_button:hover {
+  scale: 1.1;
+  transition: ease-in-out 0.5s;
+  transition: ease-in-out 0.5s;
+}
+/* STARTS STILE HOVER BUTTONS */
+
 * {
   margin: 0;
   padding: 0;
@@ -480,6 +517,7 @@ PROPIEDAD width OCUPADA EN .section */
 
 a img:hover {
   transform: scale(1.2);
+  color: #8395cd;
 }
 
 .github,
